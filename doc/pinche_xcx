@@ -1,0 +1,13 @@
+
+1\域名替换 https://xcx.codems.cn ；
+2\appid、appsecret替换；
+3\https://api.map.baidu.com  加入合法域名列表中 请参考文档：https://mp.weixin.qq.com/debug/wxadoc/dev/api/network-request.html
+4\后台代码改为JAVA 
+5\数据库创建
+
+
+
+个人信息维护
+拼车需求发布，车主、乘客
+拼车进度预览
+拼车结果变更
