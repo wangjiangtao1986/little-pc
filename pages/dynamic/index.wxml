@@ -20,8 +20,8 @@
                     <view class="r" wx:if="{{item.comments}}"></view>
                     <view class="cmt-wrap">
                         <view class="cmt-list">
-                            <view wx:for="{{item.comments}}" bindtap="seecomment" id="{{idx}}" data-name="{{comment.nickName}}" wx:for-item="comment" hover-class="comment_hover" style="color:#000;">
-                                <text>{{comment.nickName}}<text style="color:#000;margin:0px 2px;" wx:if="{{comment.reply}}">回复</text>{{comment.reply}}:</text>{{comment.content}}
+                            <view wx:for="{{item.comments}}" bindtap="seecomment" id="{{idx}}" data-name="{{comment.nickname}}" wx:for-item="comment" hover-class="comment_hover" style="color:#000;">
+                                <text>{{comment.nickname}}<text style="color:#000;margin:0px 2px;" wx:if="{{comment.reply}}">回复</text>{{comment.reply}}:</text>{{comment.content}}
                             </view>
                         </view>
                     </view>

@@ -3,7 +3,7 @@
 var util = require('../../utils/util.js');
 var app = getApp();
 //当前日期加7天，建议还是加一天吧
-var today = util.formatTime(new Date((new Date()).getTime()+(1000*60*60*24*7))).split(' ')[0];
+var today = util.formatTime(new Date((new Date()).getTime()+(1000*60*60*24*1))).split(' ')[0];
 //最小日期今天
 var minday = util.formatTime(new Date()).split(' ')[0];
 //最大日期两个月，有点长吧，变化太大
@@ -63,18 +63,8 @@ Page({
         }
         var surp = new Array('','空位','人');
         data.list.forEach(function(item){
-          try{
-            var start = ((item.departure).split('市')[1]).replace(/([\u4e00-\u9fa5]+[县区]).+/, '$1');
-          }catch(e){
-            var start = (item.departure).split(/[县区]/)[0];
-          }
-
-          try {
-            var over = ((item.destination).split('市')[1]).replace(/([\u4e00-\u9fa5]+[县区]).+/, '$1');
-          } catch (e) {
-            var over = (item.destination).split(/[县区]/)[0];
-          }
-
+          var start = util.getDistrict(item.departure);
+		  var over = util.getDistrict(item.destination);
           var obj = {
             start:start,
             over:over,

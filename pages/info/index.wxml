@@ -95,8 +95,16 @@
 </view>
 
 <view class="footer">
-    <navigator url="/pages/comment/index?id={{data.id}}"><view class="comment">发表评论</view></navigator>
-    <view class="ft-icon"><view class="tocomment" bindtap="tocomment"><image src="/img/msg.png" class="msg"></image><text class="comnum">{{comnum}}</text></view><image wx:if="{{!shoucang}}" src="/img/shoucang.png" class="shoucang" bindtap="shoucang"></image><image wx:if="{{shoucang}}" bindtap="qxshoucang" src="/img/shoucang1.png" class="shoucang"></image></view>
+    <navigator url="/pages/comment/index?id={{data.id}}">
+    <view class="comment">发表评论</view>
+    </navigator>
+    <view class="ft-icon"><view class="tocomment" bindtap="tocomment">
+    <image src="/img/msg.png" class="msg">
+    </image>
+    <text class="comnum">{{comnum}}</text></view>
+    <image wx:if="{{!shoucang}}" src="/img/shoucang.png" class="shoucang" bindtap="shoucang"></image>
+    <image wx:if="{{shoucang}}" bindtap="qxshoucang" src="/img/shoucang1.png" class="shoucang"></image>
+    </view>
 </view>
 
 <modal class="modal" hidden="{{!modalFlag}}" title="申请预约" no-cancel bindconfirm="modalOk" confirmText="不了，我再看看">  

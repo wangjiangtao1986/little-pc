@@ -47,13 +47,22 @@ App({
     var that = this;
     wx.login({
       success: function (res) {
-        wx.getUserInfo({
+      	console.log(res);
+        wx.getUserInfo({ 
           success: function(userinfo){
+        	  
+       	   		console.log("userinfo=" + userinfo);
+            	console.log("userinfo.encryptedData=" + userinfo.encryptedData);
+            	console.log("userinfo.iv=" + userinfo.iv);
+            	
             util.req('user/login', {
               "code": res.code,
               "encryptedData": userinfo.encryptedData,
               "iv": userinfo.iv
                }, function (data) {
+            	   
+            	 console.log(data);
+            	   
                  that.setUserInfo(data.user);
                  that.setSk(data.sk);
             })

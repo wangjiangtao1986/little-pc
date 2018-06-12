@@ -15,12 +15,25 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n  
 }  
 
-//https://xcx.codems.cn
-var rootDocment = 'http://aishenhuo.wang:8090/';
-//var rootDocment = 'http://aishenhuo.wang/api/';
-  
+
 //修改成你的appid及appsecret
 var AppConf = { 'appid': 'wxa4a76bcefc655c8f', 'appsecret':'d5da2b0cba4777b55f5aa973f09cb00b'};
+
+//http://xcx.codems.cn
+var rootDocment = 'http://aishenhuo.wang/pc/';
+//var rootDocment = 'http://aishenhuo.wang/api/';
+
+var rootPath = { 'api': 'http://aishenhuo.wang/pc/', 'file':'http://aishenhuo.wang/'};
+
+function getRootDocment(keyStr){
+	if('api'==keyStr) {
+		return rootPath.api;
+	} else if('file'==keyStr) {
+		return rootPath.file;
+	} else {
+		return rootPath.api;
+	}
+}  
 
 function req(url, data, cb) {
   data.appid = AppConf.appid;
@@ -148,11 +161,20 @@ function getDateBiff(dateTimeStamp){
 function escape2Html(str) { 
  var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'}; 
  return str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];}); 
-} 
+}
 
+function getDistrict(district) {
+	var d = district.split('市');
+	if(d.length>1){
+		return d[1].replace(/([\u4e00-\u9fa5]+[县区]).+/,'$1');
+	} else {
+		return district;
+	}
+}
 
 
 module.exports = {  
+  getRootDocment: getRootDocment,
   formatTime: formatTime,  
   req: req,  
   trim: trim,  
@@ -161,6 +183,7 @@ module.exports = {
   getReq: getReq,
   getDateDiff:getDateDiff,
   escape2Html:escape2Html,
+  getDistrict:getDistrict,
   getDateBiff:getDateBiff
 }
 

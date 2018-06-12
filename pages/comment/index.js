@@ -1,7 +1,7 @@
 // pages/comment/index.js
 var app = getApp();
 var util = require('../../utils/util.js');  
-var rootDocment = 'http://aishenhuo.wang:8090/';
+//var rootDocment = 'https://aishenhuo.wang/pc/';
 Page({
     data: {
         files: [],
@@ -17,7 +17,7 @@ Page({
               // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
               res.tempFilePaths.forEach(function(item){
                 wx.uploadFile({
-                  url: rootDocment + '/upload', 
+                  url: util.getRootDocment('api') + '/upload', 
                   filePath: item,
                   name: 'file',
                   formData:{
@@ -28,7 +28,7 @@ Page({
                     console.log(data);
                     if(data.status == 1){
                       that.setData({
-                          files: that.data.files.concat(rootDocment + data.data)
+                          files: that.data.files.concat(util.getRootDocment('file')  + data.data)
                       });
                       util.clearError(that);
                     }else{
@@ -64,14 +64,17 @@ Page({
       util.isError('请输入内容或者至少选择一张图片', that);
       return false;
     }
-    util.req('comment/add',{
-      'iid':that.data.data.id,
-      'reply':(that.data.data.reply == '楼主')?'':that.data.data.reply,
-      'type':'info',
-      'content':content,
-      'img':JSON.stringify(that.data.files),
-      'sk':app.globalData.sk
-      },function(data){
+    
+    var para = {
+    	      'iid':that.data.data.id,
+    	      'reply':(that.data.data.reply == '楼主')?'':that.data.data.reply,
+    	      'type':'info',
+    	      'content':content,
+    	      'img':JSON.stringify(that.data.files),
+    	      'sk':app.globalData.sk
+    	      };
+    console.log(para);
+    util.req('comment/add', para, function(data){
       if(data.status == 1){
         wx.navigateBack({
           delta: 1

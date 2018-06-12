@@ -2,7 +2,7 @@
  <!--页头-->
  <view class="page__hd">
   <view class="head">   
-    <view><navigator url="/pages/my/info"><image src="{{userInfo.avatarurl}}"></image></navigator></view>
+    <view><navigator url="/pages/my/info"><image lazy-load="true" src="{{userInfo.avatarurl}}"></image></navigator></view>
     <view><text>{{userInfo.nickname}}</text></view>
   </view>
  </view>

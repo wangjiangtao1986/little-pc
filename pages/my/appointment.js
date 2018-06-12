@@ -49,8 +49,8 @@ Page({
               var phone = false;
           }
           arr.push({
-            departure: ((item.departure).split('市')[1]).replace(/([\u4e00-\u9fa5]+[县区]).+/, '$1'),
-            destination: ((item.destination).split('市')[1]).replace(/([\u4e00-\u9fa5]+[县区]).+/, '$1'),
+		    start:util.getDistrict(item.departure),
+		    over:util.getDistrict(item.destination),
             time: util.formatTime(new Date(item.time * 1000)),
             status: status,
             id:item.id,

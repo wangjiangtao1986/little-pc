@@ -5,8 +5,6 @@ var app = getApp();
 var util = require('../../utils/util.js');  
 var tcity = require("../../utils/citys.js");
 
-var rootDocment = 'http://aishenhuo.wang:8090/';
-
 Page({
   data: {
     sex:['保密','男','女'],    
@@ -21,7 +19,6 @@ Page({
     condition: false
   },
    bindChange: function(e) {
-    //console.log(e);
     var val = e.detail.value
     var t = this.data.values;
     var cityData = this.data.cityData;
@@ -97,7 +94,7 @@ Page({
       success: function(res) {
         var tempFilePaths = res.tempFilePaths
         wx.uploadFile({
-          url: rootDocment + '/upload', 
+          url: util.getRootDocment('api')  + '/upload', 
           filePath: tempFilePaths[0],
           name: 'file',
           formData:{
@@ -105,14 +102,12 @@ Page({
           },
           success: function(res){
             var data = JSON.parse(res.data);
-            console.log(data);
             if(data.status == 1){
               that.setData({
-                'userInfo.avatarurl':rootDocment + data.data
+                'userInfo.avatarurl':util.getRootDocment('file')  + data.data
               })
               util.clearError(that);
             }else{
-              console.log(data.msg);
               util.isError(data.msg, that);
             }
           },
@@ -137,10 +132,8 @@ Page({
       'userInfo.phone':e.detail.value.phone
     })
     
-    console.log(that.data.userInfo)
-    console.log(app.globalData.sk)
     wx.request({
-      url: rootDocment + '/user/editUser',
+      url: util.getRootDocment('api')  + '/user/editUser',
       data: {
         'userInfo':that.data.userInfo,
         'sk':app.globalData.sk
@@ -171,7 +164,6 @@ Page({
     wx.getStorage({
       key: 'userInfo',
       success: function(res){
-    	  console.log(res.data);
         that.setData({
           userInfo:res.data,
           gender:res.data.gender,
@@ -184,7 +176,6 @@ Page({
         app.login();
       }
     })
-    //console.log(that.userInfo);
     tcity.init(that);
 
     var cityData = that.data.cityData;

@@ -126,8 +126,8 @@ Page({
   onLoad:function(options){
     var that = this;
     util.req('info/index',{id:options.id},function(data){
-      var time = util.formatTime(new Date(data.data.time*1000)).split(' ')[1];
-      data.data.time = time;
+      //var time = util.formatTime(new Date(data.data.time*1000)).split(' ')[1];
+      data.data.time = data.data.time;
       that.setData({data:data.data});
     })
   }

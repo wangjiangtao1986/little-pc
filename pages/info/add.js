@@ -127,9 +127,6 @@ Page({
     })
   },
   onLoad:function(options){
-
-	  	console.log(app.globalData.userInfo)
-	  	console.log(app.globalData.userInfo.gender)
     this.setData({
       gender:app.globalData.userInfo.gender,
       name:(app.globalData.userInfo.name == '')?app.globalData.userInfo.nickName:app.globalData.userInfo.name,

@@ -42,7 +42,7 @@ Page({
             nickName:item.nickname,
             time:util.getDateBiff(item.time*1000),
             zan:item.zan,
-            comments: item.comment
+            comments: item.list
           }
           arr.push(li);
         })
